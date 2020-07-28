@@ -71,6 +71,17 @@ public:
 	friend vecx operator+(const vecx& a, const vecx& b);
 	friend vecx operator-(const vecx& a, const vecx& b);
 	friend vecx operator/(const vecx& a, const idScalar& s);
+
+	/* For Emscripten. */
+	void set ( int i, idScalar v ) 
+	{
+		(*this)[i] = v;
+	}
+
+	idScalar get ( int i )
+	{
+		return (*this)[i];
+	}
 };
 
 inline vecx operator*(const vecx& a, const idScalar& s)

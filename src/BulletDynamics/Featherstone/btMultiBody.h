@@ -619,6 +619,13 @@ public:
 	}
 	void forwardKinematics(btAlignedObjectArray<btQuaternion>& world_to_local, btAlignedObjectArray<btVector3> & local_origin);
 
+	/*	Emscripten does not (yet) suppport templates in interfaces. */
+	void forwardKinematics() {
+		btAlignedObjectArray<btQuaternion> world_to_local;
+		btAlignedObjectArray<btVector3>     local_origin;
+		forwardKinematics ( world_to_local, local_origin );
+	}
+
 	void compTreeLinkVelocities(btVector3 * omega, btVector3 * vel) const;
 
 	void updateCollisionObjectWorldTransforms(btAlignedObjectArray<btQuaternion> & world_to_local, btAlignedObjectArray<btVector3> & local_origin);

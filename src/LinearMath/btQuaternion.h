@@ -45,6 +45,10 @@ const btSimdFloat4 ATTRIBUTE_ALIGNED16(vPPPM) = {+0.0f, +0.0f, +0.0f, -0.0f};
 
 #endif
 
+class btQuaternion;
+
+btVector3 quatRotate(const btQuaternion& rotation, const btVector3& v);
+
 /**@brief The btQuaternion implements quaternion to perform linear algebra rotations in combination with btMatrix3x3, btVector3 and btTransform. */
 class btQuaternion : public btQuadWord
 {
@@ -610,6 +614,13 @@ public:
 		static const btQuaternion identityQuat(btScalar(0.), btScalar(0.), btScalar(0.), btScalar(1.));
 		return identityQuat;
 	}
+
+	/*  Emscripten's IDL tool does not expose global functions. */
+	static btVector3 quatRotate ( const btQuaternion& rotation, const btVector3& v )
+   	{
+        return ::quatRotate ( rotation, v );
+    }
+
 
 	SIMD_FORCE_INLINE const btScalar& getW() const { return m_floats[3]; }
 

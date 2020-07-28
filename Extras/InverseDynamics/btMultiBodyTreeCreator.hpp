@@ -30,6 +30,12 @@ public:
 				vec3 *parent_r_parent_body_ref, mat33 *body_T_parent_ref,
 				vec3 *body_axis_of_motion, idScalar *mass, vec3 *body_r_body_com,
 				mat33 *body_I_body, int *user_int, void **user_ptr) const;
+	
+	/*  Emscripten's IDL tool does not expose global functions. */
+	static MultiBodyTree * CreateMultiBodyTree ( const MultiBodyTreeCreator & creator )
+	{
+		return btInverseDynamics::CreateMultiBodyTree ( creator );
+	}
 
 private:
 	// internal struct holding data extracted from btMultiBody
